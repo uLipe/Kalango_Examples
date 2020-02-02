@@ -1,0 +1,4 @@
+[submodule "Kalango"]
+	path = Kalango
+	url = https://github.com/uLipe/Kalango
+	branch = master
