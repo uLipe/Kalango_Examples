@@ -41,11 +41,9 @@ static void InfoTask(void *arg) {
 
     for(int i =0 ; i < 4 ; i++) {
         led_timers[i] = Kalango_TimerCreate(LedTimerCallback, 
-                                            100,
-                                            100,
+                                            (i + 1) * 100,
+                                            (i + 1) * 100,
                                             (void *)(LED1_PIN + i)); 
-        printf("%s Ticks: %d ::: Timer object %p for led %d : %d \n\n",
-                colors[0], Kalango_GetCurrentTicks(), led_timers[i], i);
 
         Kalango_TimerStart(led_timers[i]);
     }
