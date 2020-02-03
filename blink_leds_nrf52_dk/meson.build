@@ -83,7 +83,7 @@ cargs =  [
    '-mabi=aapcs',
    '-Wall', 
    '-Werror',
-   '-O0', 
+   '-Os', 
    '-g3',
    '-mfloat-abi=hard',
    '-mfpu=fpv4-sp-d16',
