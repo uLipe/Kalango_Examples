@@ -12,25 +12,28 @@ simple, but don't worry, the kernel and other repositories are pinned here using
 git submodules, just clone this repo with option <b>--recursive</b> and all dependencies
 should be pulled to local folder. 
 
-## Getting started:
-- First get this respository and all the submodules:
+## Get the Code!
  ```
  $ git clone --recursive https://github.com/uLipe/Kalango_Examples
  ```
 
-- Most of examples uses meson build-system, so install it first or move 
-the desired example inside your preferred IDE;
-
-- If you want to use meson, after it is installed, just hit commands below 
-on one of the samples folder:
+## Build a sample:
+Building a sample is simple, just navigate to one of sample directories, and 
+using the CMake (you need to install it) type:
 
 ```
-$ meson  build --cross-file cross-file.txt
-$ cd build
-$ ninja hex
+$ export EXAMPLES_PATH=/path/to/Kalango_Examples/folder
+$ cd blink-leds-nrf52-dk
+$ mkdir build && cd build
+$ cmake -GNinja .. -DCMAKE_TOOLCHAIN_FILE=../cmake/arm-none-eabi-m4-float-toolchain.cmake -DKALANGO_CONFIG_FILE_PATH=../config_includes
 ```
-- Inside of the <b>build</b> folder you'll find the .elf and .hex flashable files,
-so just burn it into your target board.
+Inside of the build directory you should now able to build the firmware:
+
+```
+$ ninja
+```
+The <b>build</b> folder now has the .elf file which can be converted to a binary file(hex or bin), or flashed to the target using
+your favorite debug probe.
 
 ## Support:
 - If you want some help with this work just contact me: ryukokki.felipe@gmail.com
