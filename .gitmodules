@@ -4,3 +4,6 @@
 [submodule "button-isr-nrf52-dk/KalangoRTOS"]
 	path = button-isr-nrf52-dk/KalangoRTOS
 	url = https://github.com/uLipe/KalangoRTOS
+[submodule "blink-leds-soft-timer-nrf52-dk/KalangoRTOS"]
+	path = blink-leds-soft-timer-nrf52-dk/KalangoRTOS
+	url = https://github.com/uLipe/KalangoRTOS
