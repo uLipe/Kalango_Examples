@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(blink-leds C ASM)
 
-add_subdirectory(Kalango)
+add_subdirectory(KalangoRTOS)
 
 set(SRCS "main.c"
          "system_nrf52833.c"

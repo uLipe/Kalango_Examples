@@ -1,0 +1,3 @@
+[submodule "blink-leds-nrf52-dk/KalangoRTOS"]
+	path = blink-leds-nrf52-dk/KalangoRTOS
+	url = https://github.com/uLipe/KalangoRTOS
