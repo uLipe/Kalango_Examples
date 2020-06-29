@@ -5,19 +5,19 @@ is engineered to be simple and scalable allowing others to download, use, learn 
 into more professional projects. It is under development status and all updates will
 figure here.
 
-## Examples:
+# Examples:
 Here you will find some examples for popular boards, which I will be adding gradually
 the idea is to keep kernel and examples repositories separated to make the integration 
 simple, but don't worry, the kernel and other repositories are pinned here using 
 git submodules, just clone this repo with option <b>--recursive</b> and all dependencies
 should be pulled to local folder. 
 
-## Get the Code!
+# Get the Code!
  ```
  $ git clone --recursive https://github.com/uLipe/Kalango_Examples
  ```
 
-## Build a sample:
+# Build a sample!
 Building a sample is simple, just navigate to one of sample directories, and 
 using the CMake (you need to install it) type:
 
@@ -35,6 +35,6 @@ $ ninja
 The <b>build</b> folder now has the .elf file which can be converted to a binary file(hex or bin), or flashed to the target using
 your favorite debug probe.
 
-## Support:
+# Support:
 - If you want some help with this work just contact me: ryukokki.felipe@gmail.com
 
