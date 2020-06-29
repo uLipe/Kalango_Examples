@@ -1,4 +1,3 @@
-[submodule "Kalango"]
-	path = Kalango
-	url = https://github.com/uLipe/Kalango
-	branch = master
+[submodule "blink-leds-nrf52-dk/KalangoRTOS"]
+	path = blink-leds-nrf52-dk/KalangoRTOS
+	url = https://github.com/uLipe/KalangoRTOS
