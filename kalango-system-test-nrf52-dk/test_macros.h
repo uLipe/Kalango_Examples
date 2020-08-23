@@ -6,13 +6,13 @@
 ({  \
     int __test_failed = 0;  \
     if(!(cond)) {             \
-        printf ("%s [TEST_ERROR] Test" #cond "failed in line %d \n", \
-            RTT_CTRL_TEXT_RED,  \
+        printf ("%s [TEST_ERROR] Test: " #cond " failed in line %d \n", \
+            RTT_CTRL_TEXT_BRIGHT_RED ,  \
             __LINE__);          \
             __test_failed = 1;  \
     } else {                    \
-        printf ("%s [TEST_SUCCESS] Test" #cond "passed! \n", \
-            RTT_CTRL_TEXT_GREEN);   \
+        printf ("%s [TEST_SUCCESS] Test: " #cond " passed! \n", \
+            RTT_CTRL_TEXT_BRIGHT_GREEN );   \
     }   \
     __test_failed;  \
 })
@@ -27,7 +27,7 @@
 #define TEST_LOG_INFO(fmt, ...) \
     do {    \
         printf("%s [LOG_INFO]: %s(): " fmt "\n",    \
-            RTT_CTRL_TEXT_GREEN, \
+            RTT_CTRL_TEXT_BRIGHT_GREEN, \
             __func__,   \
             ##__VA_ARGS__); \
     }while(0) 
@@ -35,7 +35,7 @@
 #define TEST_LOG_W(fmt, ...) \
     do {    \
         printf("%s [LOG_INFO]: %s(): " fmt "\n",    \
-            RTT_CTRL_TEXT_YELLOW, \
+            RTT_CTRL_TEXT_BRIGHT_YELLOW, \
             __func__,   \
             ##__VA_ARGS__); \
     }while(0) 
@@ -43,7 +43,7 @@
 #define TEST_LOG_ERROR(fmt, ...) \
     do {    \
         printf("%s [LOG_INFO]: %s(): " fmt "\n",    \
-            RTT_CTRL_TEXT_RED, \
+            RTT_CTRL_TEXT_BRIGHT_RED, \
             __func__,   \
             ##__VA_ARGS__); \
     }while(0) 

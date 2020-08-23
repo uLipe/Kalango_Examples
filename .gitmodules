@@ -7,3 +7,6 @@
 [submodule "blink-leds-soft-timer-nrf52-dk/KalangoRTOS"]
 	path = blink-leds-soft-timer-nrf52-dk/KalangoRTOS
 	url = https://github.com/uLipe/KalangoRTOS
+[submodule "kalango-system-test-nrf52-dk/KalangoRTOS"]
+	path = kalango-system-test-nrf52-dk/KalangoRTOS
+	url = https://github.com/uLipe/KalangoRTOS
