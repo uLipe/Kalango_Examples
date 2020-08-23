@@ -6,13 +6,15 @@
 ({  \
     int __test_failed = 0;  \
     if(!(cond)) {             \
-        printf ("%s [TEST_ERROR] Test: " #cond " failed in line %d \n", \
+        printf ("%s [TEST_ERROR] %s() Test: " #cond " failed in line %d \n", \
             RTT_CTRL_TEXT_BRIGHT_RED ,  \
+            __func__,           \
             __LINE__);          \
             __test_failed = 1;  \
     } else {                    \
-        printf ("%s [TEST_SUCCESS] Test: " #cond " passed! \n", \
-            RTT_CTRL_TEXT_BRIGHT_GREEN );   \
+        printf ("%s [TEST_SUCCESS] %s() Test: " #cond " passed! \n", \
+            RTT_CTRL_TEXT_BRIGHT_GREEN, \
+            __func__);   \
     }   \
     __test_failed;  \
 })
