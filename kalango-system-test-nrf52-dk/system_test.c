@@ -1,6 +1,35 @@
 #include <kalango_api.h>
 #include "test_macros.h"
 
+void KalangoTestTask(void *arg) {
+    uint32_t command = (uint32_t) arg;
+
+    if(command == 0) {
+        TEST_ASSERT_EQUALS(Kalango_TaskDelete(Kalango_GetCurrentTaskId()), kSuccess);
+    }
+
+    if(command == 1) {
+        TEST_ASSERT_EQUALS(Kalango_TaskSuspend(Kalango_GetCurrentTaskId()), kSuccess);
+        TEST_ASSERT_EQUALS(Kalango_Sleep(10), kSuccess);
+        TEST_ASSERT_EQUALS(Kalango_TaskDelete(Kalango_GetCurrentTaskId()), kSuccess);
+    }
+
+    if(command == 2) {
+        TEST_ASSERT_EQUALS(Kalango_Sleep(5), kSuccess);
+        TEST_ASSERT_EQUALS(TaskYield(), kSuccess);
+        TEST_ASSERT_EQUALS(Kalango_TaskGetPriority(Kalango_GetCurrentTaskId()), 9);
+        TEST_ASSERT_EQUALS(Kalango_TaskDelete(Kalango_GetCurrentTaskId()), kSuccess);
+
+    }
+
+    if(command == 3) {
+        TEST_ASSERT_EQUALS(Kalango_Sleep(5), kSuccess);
+        TEST_ASSERT_EQUALS(TaskYield(), kSuccess);
+        TEST_ASSERT_EQUALS(Kalango_TaskGetPriority(Kalango_GetCurrentTaskId()), 9);
+        TEST_ASSERT_EQUALS(Kalango_TaskDelete(Kalango_GetCurrentTaskId()), kSuccess);
+    }
+}
+
 KernelResult KalangoTasksTests(void) {
 
     int fails = 0;
@@ -8,7 +37,7 @@ KernelResult KalangoTasksTests(void) {
     //Current task priority is the same when created if not changed:
     TaskId current = Kalango_GetCurrentTaskId();
     fails |= TEST_ASSERT_NOT_NULL(current);
-    fails |= TEST_ASSERT_EQUALS(Kalango_TaskGetPriority(current), 16);
+    fails |= TEST_ASSERT_EQUALS(Kalango_TaskGetPriority(current), 8);
 
     //Setting priority results in task base priority:
     uint32_t old = Kalango_TaskSetPriority(current, 17);
@@ -18,6 +47,32 @@ KernelResult KalangoTasksTests(void) {
     //Reset priority gives the task original priority:
     Kalango_TaskSetPriority(current, old);
     fails |= TEST_ASSERT_EQUALS(Kalango_TaskGetPriority(current), old);
+
+    TaskSettings settings;
+    settings.arg = (void *)0;
+    settings.function = KalangoTestTask;
+    settings.stack_size = 1024;
+    settings.priority = 9;
+
+    TaskId id = Kalango_TaskCreate(&settings);
+    fails |= TEST_ASSERT_NOT_NULL(id);
+    fails |= TEST_ASSERT_EQUALS(Kalango_Sleep(10), kSuccess);
+
+    settings.arg = (void *)1;
+    id = Kalango_TaskCreate(&settings);
+    fails |= TEST_ASSERT_NOT_NULL(id);
+    fails |= TEST_ASSERT_EQUALS(Kalango_TaskResume(id), kSuccess);
+    fails |= TEST_ASSERT_EQUALS(Kalango_Sleep(50), kSuccess);
+
+    settings.arg = (void *)2;
+    id = Kalango_TaskCreate(&settings);
+    fails |= TEST_ASSERT_NOT_NULL(id);
+
+    settings.arg = (void *)3;
+    id = Kalango_TaskCreate(&settings);
+    fails |= TEST_ASSERT_NOT_NULL(id);
+    fails |= TEST_ASSERT_EQUALS(Kalango_Sleep(100), kSuccess);
+
 
     return (KernelResult)fails;
 }

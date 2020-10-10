@@ -30,7 +30,7 @@ int main(void) {
 
     settings.arg = NULL;
     settings.function = (TaskFunction)SystemTask;
-    settings.priority = 16;
+    settings.priority = 8;
     settings.stack_size = 4096;
 
     Kalango_TaskCreate(&settings);
